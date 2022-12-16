@@ -1,0 +1,78 @@
+<section class="vh-100">
+    <div class="container-fluid">
+     <div class="row">
+        <div class="col-sm-6 text-black">
+  
+          <div class="d-flex align-items-center h-custom-2 px-5 ms-xl-4 mt-5 pt-5 pt-xl-0 mt-xl-n5">
+  
+            <form method='post' name='myform' action="{% url 'admin_login' %}" style="width: 23rem;" onsubmit=" return validation()">
+                {% csrf_token %}
+                {% if messages %}              
+                {% for message in messages %}
+                   {% if message.level == DEFAULT_MESSAGE_LEVELS.WARNING %}
+                             <script>swal({
+                               title: "Warning!",
+                               text: "{{message}}",
+                               icon: "warning",
+                               button: "OK",
+                             });
+                           </script>
+                        
+                         {% elif message.level == DEFAULT_MESSAGE_LEVELS.INFO %}
+                             <script>swal({
+                               title: "Info :)",
+                               text: "{{message}}",
+                               icon: "info",
+                               button: "OK",
+                             });
+                   </script>
+                   {% elif message.level == DEFAULT_MESSAGE_LEVELS.ERROR %}
+                   <script>swal({
+                     title: "Error :)",
+                     text: "{{message}}",
+                     icon: "eroor",
+                     button: "OK",
+                   });
+                   </script>
+                   {% elif message.level == DEFAULT_MESSAGE_LEVELS.SUCCESS %}
+                   <script>swal({
+                   title: "Success :)",
+                   text: "{{message}}",
+                   icon: "success",
+                   button: "OK",
+                   });
+                   </script>
+                         {% endif %}              
+                       {% endfor %} 
+                   {% endif %}
+  
+              <h3 class="fw-normal mt-5 pb-3" style="letter-spacing: 1px;"> Admin Login</h3>
+  
+              <div class="form-outline mb-4">
+                <label class="form-label" for="form3Example1">user name</label>
+                    <input type="text" id="username" name='username' class="form-control" />
+              
+              </div>
+  
+              <div class="form-outline mb-4">
+                <label class="form-label" for="form3Example2">Password</label>
+                <input type="password" id="password" name='password' class="form-control" />
+                
+              </div>
+  
+              <button type="submit" class="btn btn-success btn-lg w-50 btn-block mb-4 gradient-custom-4 text-white">
+                login
+                </button>
+              
+            </form>
+            
+          </div>
+  
+        </div>
+        <div class="col-sm-6 px-0 d-none d-sm-block">
+          <img src="{% static 'admin/assets/img/login image2.jpg' %}"
+            alt="Login image" class="w-100 vh-95" style="object-fit: cover;object-position: left;">
+        </div>
+      </div>
+    </div>
+  </section>

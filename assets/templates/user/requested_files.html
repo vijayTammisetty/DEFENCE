@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+<head>
+    <meta charset="utf-8">
+    <title>Received Records</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="" name="keywords">
+    <meta content="" name="description">
+
+    <!-- Favicon -->
+    <link href="{% static 'user/img/favicon.ico' %}" rel="icon">
+
+    <!-- Google Web Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Jost:wght@500;600;700&family=Open+Sans:wght@400;500&display=swap" rel="stylesheet">  
+
+    <!-- Icon Font Stylesheet -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
+
+    <!-- Libraries Stylesheet -->
+    <link href="{% static 'user/lib/animate/animate.min.css' %}" rel="stylesheet">
+    <link href="{% static 'user/lib/owlcarousel/assets/owl.carousel.min.css' %}" rel="stylesheet">
+    <link href="{% static 'user/lib/lightbox/css/lightbox.min.css' %}" rel="stylesheet">
+
+    <!-- Customized Bootstrap Stylesheet -->
+    <link href="{% static 'user/css/bootstrap.min.css' %}" rel="stylesheet">
+
+    <!-- Template Stylesheet -->
+    <link href="{% static 'user/css/style.css' %}" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-alpha1/dist/css/bootstrap.min.css"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <style>@import url("https://fonts.googleapis.com/css2?family=Poppins:weight@100;200;300;400;500;600;700;800&display=swap");
+
+
+        body{
+         background-color:#eee;
+         font-family: "Poppins", sans-serif;
+         font-weight: 300;
+        }
+ 
+        .height{
+         height: 100vh;
+        }
+        
+ 
+        .search{
+        position: relative;
+        box-shadow: 0 0 40px rgba(51, 51, 51, .1);
+          
+        }
+ 
+        .search input{
+ 
+         height: 60px;
+         text-indent: 25px;
+         border: 2px solid #d6d4d4;
+ 
+ 
+        }
+ 
+ 
+        .search input:focus{
+ 
+         box-shadow: none;
+         border: 2px solid blue;
+ 
+ 
+        }
+ 
+        .search .fa-search{
+ 
+         position: absolute;
+         top: 20px;
+         left: 16px;
+ 
+        }
+ 
+        .search button{
+ 
+         position: absolute;
+         top: 5px;
+         right: 5px;
+         height: 50px;
+         width: 110px;
+         background: blue;
+ 
+        }</style>
+</head>
+
+<body>
+    <!-- Spinner Start -->
+    <div id="spinner" class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
+        <div class="spinner-border text-primary" role="status" style="width: 3rem; height: 3rem;"></div>
+    </div>
+    <!-- Spinner End -->
+
+
+    <!-- Topbar Start -->
+    <div class="container-fluid bg-dark text-light px-0 py-2">
+        <div class="row gx-0 d-none d-lg-flex">
+            <div class="col-lg-7 px-5 text-start">
+                <div class="h-100 d-inline-flex align-items-center me-4">
+                    <span class="fa fa-phone-alt me-2"></span>
+                    <span>+012 345 6789</span>
+                </div>
+                <div class="h-100 d-inline-flex align-items-center">
+                    <span class="far fa-envelope me-2"></span>
+                    <span>info@example.com</span>
+                </div>
+            </div>
+            
+        </div>
+    </div>
+    <!-- Topbar End -->
+
+
+    <!-- Navbar Start -->
+    <nav class="navbar navbar-expand-lg bg-white navbar-light sticky-top p-0">
+        <a href="main-home.html" class="navbar-brand d-flex align-items-center px-3 px-lg-4">
+            <h1 class="m-0">Defence</h1>
+        </a>
+        <button type="button" class="navbar-toggler me-4" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarCollapse">
+            <div class="navbar-nav ms-auto p-4 p-lg-0">
+                <a href="{% url 'dashbord' %}" class="nav-item nav-link">Home</a>
+                <a href="{% url 'conf-data' %}" class="nav-item nav-link">Confidential Data</a>
+                <a href="{% url 'record' %}" class="nav-item nav-link ">Request Record</a>
+                <a href="{% url 'approved-record' %}" class="nav-item nav-link">Approved Record Request</a>
+                <a href="{% url 'received_files' %}" class="nav-item nav-link active">Received Files</a>
+                <a href="{% url 'profile' %}" class="nav-item nav-link">Profile</a>
+                
+                <a href="{% url 'logout' %}" class="nav-item nav-link">Logout</a>
+           
+    </nav>
+    <!-- Navbar End -->
+
+
+   
+
+
+    <!-- Quote Start -->
+    <div class="container mt-5 mb-5">
+        
+        <div class="container">
+
+            <div class="row  d-flex justify-content-center align-items-center">
+                <div class="col-md-4">
+                    <h2 class="text">Received files</h2>
+                </div>
+                
+
+                    <div class="col-md-4 col-sm-4 " >
+                        <form action="{% url 'search' %}" method="post" enctype="multipart/form-data">
+                             {% csrf_token %} 
+                            <div class="search">
+                            <i class="fa fa-search"></i>
+                            <input type="search" name='search' class="form-control" placeholder="Search Record">
+                            <button class="btn btn-primary" type='submit'>Search</button>
+                            </div>
+                        </form>
+                    </div>
+              
+              
+            </div>
+        </div>
+        <br>
+        
+        <div class="table-responsive">         
+            <table class="table table-light text-center">
+              <thead>
+                <tr>
+                  <th>Name</th>
+                  <th>Profile</th>
+                  <th>Department</th>
+                  <th>Record Name</th>
+                  <th>File</th>
+                  <th>Description</th>
+                  <th>Action</th>
+                
+                </tr>
+              </thead>
+              <tbody>
+                {% for record  in records %}
+                <tr>
+                  <td>{{record.sender_id.name}}</td>
+                  <td><img src="/media/{{record.sender_id.profile}}" style="width: 50px;height:50px;border-radius: 50%;"></td>
+                  <td>{{record.sender_id.empDepartment}}</td>
+                  <td>{{record.name_of_the_file}}</td>
+                  <td><a href="/media/{{record.file}}" download>{{record.file}}</a></td>
+                  <td><textarea readonly>{{record.description}}</textarea></td>
+                 <td><a href="{% url 'delete_file' record.send_file_id %}"><button class='btn btn-danger' type='submit' onclick="return confirm ('Are you sure want to delete it')">Delete</button></a></td> 
+                
+                </tr>
+                {% endfor %}
+            
+                </tr>
+            
+              </tbody>
+            
+            </table>
+        </div>
+        <nav aria-label="Page navigation example">
+            <ul class="pagination ml-2">
+                {% if records.has_previous %}
+                    <!-- <li class="page-item"><a class="page-link" href="?page=1">&laquo; First</a></li> -->
+                    <li class="page-item"><a class="page-link bg-info text-white" href="?page={{ records.previous_page_number }}">Previous</a></li>
+                {% endif %}
+                {% if records.has_next %}
+                <li class="page-item"><a class="page-link bg-info text-white" href="?page={{ records.next_page_number }}">Next</a></li>
+                <!-- <li class="page-item"><a class="page-link" href="?page={{ r.paginator.num_pages }}">Last &raquo;</a></li> -->
+                {% endif %}
+            </ul>
+            Page {{ records.number }} of {{ records.paginator.num_pages }}.
+          </nav>
+       
+      </div>
+      
+      
+      {% if messages %}              
+      {% for message in messages %}
+         {% if message.level == DEFAULT_MESSAGE_LEVELS.WARNING %}
+                   <script>swal({
+                     title: "Warning!",
+                     text: "{{message}}",
+                     icon: "warning",
+                     button: "OK",
+                   });
+                 </script>
+              
+               {% elif message.level == DEFAULT_MESSAGE_LEVELS.INFO %}
+                   <script>swal({
+                     title: "Info :)",
+                     text: "{{message}}",
+                     icon: "info",
+                     button: "OK",
+                   });
+         </script>
+         {% elif message.level == DEFAULT_MESSAGE_LEVELS.ERROR %}
+         <script>swal({
+           title: "Error :)",
+           text: "{{message}}",
+           icon: "eroor",
+           button: "OK",
+         });
+         </script>
+         {% elif message.level == DEFAULT_MESSAGE_LEVELS.SUCCESS %}
+         <script>swal({
+         title: "Success :)",
+         text: "{{message}}",
+         icon: "success",
+         button: "OK",
+         });
+         </script>
+               {% endif %}              
+             {% endfor %} 
+         {% endif %}
+          
+
+
+    <!-- Footer Start -->
+    <div class="container-fluid bg-dark text-light footer mt-5 py-5 wow fadeIn" data-wow-delay="0.1s">
+        <div class="container py-5">
+            <div class="row g-5">
+                <div class="col-lg-6 col-md-6">
+                    <h4 class="text-white mb-4">Our Office</h4>
+                    <p class="mb-2"><i class="fa fa-map-marker-alt me-3"></i>123 Street, New York, USA</p>
+                    <p class="mb-2"><i class="fa fa-phone-alt me-3"></i>+91 8555887986</p>
+                    <p class="mb-2"><i class="fa fa-envelope me-3"></i>info@example.com</p>
+                    
+                </div>
+                
+                <div class="col-lg-6 col-md-6">
+                    
+                    <a class="btn btn-link" href="{% url 'dashbord' %}">Home</a>
+                    <a class="btn btn-link" href="{% url 'conf-data' %}">Confidential Data</a>
+                    <a class="btn btn-link" href="{% url 'record' %}">Request Record</a>
+                    <a class="btn btn-link" href="{% url 'approved-record' %}">Aproved Request Record</a>
+                    <a class="btn btn-link" href="{% url 'received_files' %}">Received Files</a>
+                    <a class="btn btn-link" href="{% url 'profile' %}">Profile</a>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+    <!-- Footer End -->
+
+
+    <!-- Copyright Start -->
+    <div class="container-fluid copyright py-4">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
+                    &copy; <a class="border-bottom" href="https://codebook.in">Codebook</a>, All Right Reserved.
+                </div>
+                <div class="col-md-6 text-center text-md-end">
+                    <!--/*** This template is free as long as you keep the footer author’s credit link/attribution link/backlink. If you'd like to use the template without the footer author’s credit link/attribution link/backlink, you can purchase the Credit Removal License from "https://htmlcodex.com/credit-removal". Thank you for your support. ***/-->
+                    Designed & Developed By Codebook <a class="border-bottom" href="https://Codebook.com">Codebook</a> <a href="https://themewagon.com"></a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Copyright End -->
+
+
+    <!-- Back to Top -->
+    <a href="#" class="btn btn-lg btn-primary btn-lg-square rounded-circle back-to-top"><i class="bi bi-arrow-up"></i></a>
+
+
+    <!-- JavaScript Libraries -->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="{% static 'user/lib/wow/wow.min.js' %}"></script>
+    <script src="{% static 'user/lib/easing/easing.min.js' %}"></script>
+    <script src="{% static 'user/lib/waypoints/waypoints.min.js' %}"></script>
+    <script src="{% static 'user/lib/owlcarousel/owl.carousel.min.js' %}"></script>
+    <script src="{% static 'user/lib/counterup/counterup.min.js' %}"></script>
+    <script src="{% static 'user/lib/parallax/parallax.min.js' %}"></script>
+    <script src="{% static 'user/lib/isotope/isotope.pkgd.min.js' %}"></script>
+    <script src="{% static 'user/lib/lightbox/js/lightbox.min.js' %}"></script>
+
+    <!-- Template Javascript -->
+    <script src="{% static 'user/js/main.js' %}"></script>
+</body>
+
+</html>

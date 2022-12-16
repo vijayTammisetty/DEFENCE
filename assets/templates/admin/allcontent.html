@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+{% load static %}
+<!--
+* CoreUI - Free Bootstrap Admin Template
+* @version v4.2.1
+* @link https://coreui.io
+* Copyright (c) 2022 creativeLabs Łukasz Holeczek
+* Licensed under MIT (https://coreui.io/license)
+-->
+<!-- Breadcrumb-->
+<html lang="en">
+
+<head>
+    <base href="./">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <meta name="description" content="CoreUI - Open Source Bootstrap Admin Template">
+    <meta name="author" content="Łukasz Holeczek">
+    <meta name="keyword" content="Bootstrap,Admin,Template,Open,Source,jQuery,CSS,HTML,RWD,Dashboard">
+    <title> Confidential Data</title>
+    <link rel="apple-touch-icon" sizes="57x57" href="{% static 'admin/assets/favicon/apple-icon-57x57.png' %}">
+    <link rel="apple-touch-icon" sizes="60x60" href="{% static 'admin/assets/favicon/apple-icon-60x60.png' %}">
+    <link rel="apple-touch-icon" sizes="72x72" href="{% static 'admin/assets/favicon/apple-icon-72x72.png' %}">
+    <link rel="apple-touch-icon" sizes="76x76" href="{% static 'admin/assets/favicon/apple-icon-76x76.png' %}">
+    <link rel="apple-touch-icon" sizes="114x114" href="{% static 'admin/assets/favicon/apple-icon-114x114.png' %}">
+    <link rel="apple-touch-icon" sizes="120x120" href="{% static 'admin/assets/favicon/apple-icon-120x120.png' %}">
+    <link rel="apple-touch-icon" sizes="144x144" href="{% static 'admin/assets/favicon/apple-icon-144x144.png' %}">
+    <link rel="apple-touch-icon" sizes="152x152" href="{% static 'admin/assets/favicon/apple-icon-152x152.png' %}">
+    <link rel="apple-touch-icon" sizes="180x180" href="{% static 'admin/assets/favicon/apple-icon-180x180.png' %}">
+    <link rel="icon" type="image/png" sizes="192x192" href="{% static 'admin/assets/favicon/android-icon-192x192.png' %}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{% static 'admin/assets/favicon/favicon-32x32.png' %}">
+    <link rel="icon" type="image/png" sizes="96x96" href="{% static 'admin/assets/favicon/favicon-96x96.png' %}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{% static 'admin/assets/favicon/favicon-16x16.png' %}">
+    <link rel="manifest" href="{% static 'admin/assets/favicon/manifest.json' %}">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="{% static 'admin/assets/favicon/ms-icon-144x144.png' %}">
+    <meta name="theme-color" content="#ffffff">
+    <!-- Vendors styles-->
+    <link rel="stylesheet" href="{% static 'admin/vendors/simplebar/css/simplebar.css' %}">
+    <link rel="stylesheet" href="{% static 'admin/css/vendors/simplebar.css' %}">
+    <!-- Main styles for this application-->
+    <link href="{% static 'admin/css/style.css' %}" rel="stylesheet">
+    <!-- We use those styles to show code examples, you should remove them in your application.-->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs@1.23.0/themes/prism.css">
+    <link href="{% static 'admin/css/examples.css' %}" rel="stylesheet">
+    <!-- Global site tag (gtag.js) - Google Analytics-->
+    <script async="" src="https://www.googletagmanager.com/gtag/js?id=UA-118965717-3"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+        gtag('js', new Date());
+        // Shared ID
+        gtag('config', 'UA-118965717-3');
+        // Bootstrap ID
+        gtag('config', 'UA-118965717-5');
+    </script>
+
+    <style>
+
+        table {
+            display: block;
+            overflow-x: auto;
+            white-space: nowrap;
+        }
+
+        table tbody {
+            display: table;
+            width: 100%;
+        }
+
+        table {
+            overflow: scroll;
+        }
+
+    </style>
+    <link href="{% static 'admin/vendors/@coreui/chartjs/css/coreui-chartjs.css' %}" rel="stylesheet">
+</head>
+
+<body>
+    <div class="sidebar sidebar-dark sidebar-fixed" id="sidebar">
+        <div class="sidebar-brand d-none d-md-flex">
+            <svg class="sidebar-brand-full" width="118" height="46" alt="CoreUI Logo">
+                <use xlink:href="{% static 'admin/assets/brand/coreui.svg#full' %}"></use>
+            </svg>
+            <svg class="sidebar-brand-narrow" width="46" height="46" alt="CoreUI Logo">
+                <use xlink:href="{% static 'admin/assets/brand/coreui.svg#signet' %}"></use>
+            </svg>
+        </div>
+        <ul class="sidebar-nav" data-coreui="navigation" data-simplebar="">
+            <li class="nav-item"><a class="nav-link" href="{% url 'dashboard' %}">
+                    <svg class="nav-icon">
+                        <use xlink:href="{% static 'admin/vendors/@coreui/icons/svg/free.svg#cil-speedometer' %}"></use>
+                    </svg> Dashboard<span class="badge badge-sm bg-info ms-auto"></span></a></li>
+
+
+
+            <li class="nav-group"><a class="nav-link nav-group-toggle" href="#">
+                    <svg class="nav-icon">
+                        <use xlink:href="{% static 'admin/vendors/@coreui/icons/svg/free.svg#cil-puzzle' %}"></use>
+                    </svg>User Management</a>
+                <ul class="nav-group-items">
+                    <li class="nav-item"><a class="nav-link" href="{% url 'new-staff' %}"><span
+                                class="nav-icon"></span>Add New Staff</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'manage-staff' %}"><span
+                                class="nav-icon"></span>Manage Staff</a></li>
+                
+                </ul>
+            </li>
+            <li class="nav-group"><a class="nav-link nav-group-toggle" href="#">
+                    <svg class="nav-icon">
+                        <use xlink:href="{% static 'admin/vendors/@coreui/icons/svg/free.svg#cil-cursor' %}"></use>
+                    </svg>Content Management</a>
+                <ul class="nav-group-items">
+                    <li class="nav-item active"><a class="nav-link" href="{% url 'published' %}"><span
+                                class="nav-icon"></span>Published Content</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'allcontent' %}"><span
+                                class="nav-icon"></span>All Content</a></li>
+
+                </ul>
+            </li>
+        </ul>
+        <button class="sidebar-toggler" type="button" data-coreui-toggle="unfoldable"></button>
+    </div>
+    <div class="wrapper d-flex flex-column min-vh-100 bg-light">
+        <header class="header header-sticky mb-4">
+            <div class="container-fluid">
+                <button class="header-toggler px-md-0 me-md-3" type="button"
+                    onclick="coreui.Sidebar.getInstance(document.querySelector('#sidebar')).toggle()">
+                    <svg class="icon icon-lg">
+                        <use xlink:href="{% static 'admin/vendors/@coreui/icons/svg/free.svg#cil-menu' %}"></use>
+                    </svg>
+                </button><a class="header-brand d-md-none" href="#">
+                    <svg width="118" height="46" alt="CoreUI Logo">
+                        <use xlink:href="{% static 'admin/assets/brand/coreui.svg#full' %}"></use>
+                    </svg></a>
+                <ul class="header-nav d-none d-md-flex">
+                    <li class="nav-item"><a class="nav-link" href="#">All Content</a></li>
+                    <!-- <li class="nav-item"><a class="nav-link" href="#">Users</a></li>
+            <li class="nav-item"><a class="nav-link" href="#">Settings</a></li> -->
+                </ul>
+                 <ul class="header-nav ms-auto">
+                   
+                </ul> 
+                <ul class="header-nav ms-3">
+                    <li class="nav-item dropdown"><a class="nav-link py-0" data-coreui-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+                        <div class="avatar avatar-md"><img class="avatar-img" src="{% static 'admin/assets/img/avatars/8.jpg' %}" alt="user@email.com"></div>
+                      </a>
+                      <div class="dropdown-menu dropdown-menu-end pt-0">
+                        
+                         
+                          <svg class="icon me-2">
+                            
+                          </svg><a href="{% url 'admin_logout' %}">Logout</a></a>
+                      </div>
+                    </li>
+                  </ul>
+
+           
+
+                
+                
+            </div>
+            <div class="header-divider"></div>
+            <div class="container-fluid">
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb my-0 ms-2">
+                        <li class="breadcrumb-item">
+                           <span>Dashboard</span>
+                        </li>
+                        <li class="breadcrumb-item active"><span>Approved Contents</span></li>
+                    </ol>
+                </nav>
+            </div>
+        </header>
+        <div class="body flex-grow-1 px-3">
+            <div class="container-fluid">
+                <div class="row">
+                    <section class="vh-100" style="background-color: #eee;">
+                        <div class="container h-50">
+                            <div class="row d-flex justify-content-center align-items-center h-100">
+                                <div class="col-lg-12 col-xl-11">
+                                    <div class="card text-black" style="border-radius: 100px;">
+                                        <div class="card-body p-md-5">
+                                            <div class="row justify-content-center">
+                                                <div class="col-lg-12" style="width: 1000px; height: 400px;">
+
+                                                    <p class="text-center h1 fw-bold mb-1  "> Approved Contents</p>
+
+                                                   
+                                                        <table class="table " >
+                                                            <thead>
+                                                              
+                                                            </thead>
+                                                            <tbody>
+                                                                <tr class='text-center'>
+                                                                    <th scope="col">#</th>
+                                                                    <th scope="col">Emp Name</th>
+                                                                    
+                                                                    <th scope="col">Emp Id</th>
+                                                                    <th scope="col">Emp Profile</th>
+                                                                    
+                                                                    <th scope="col">Department</th>
+                                                                
+                                                                    <th scope="col">Content</th>
+                                                                    <th scope="col">Date</th>
+                                                                    <th scope="col">Action</th>
+                                                                    {% comment %} <th scope="col">Status</th> {% endcomment %}
+                                                                  </tr>
+                                                                {% for content in all_content %}
+                                                               
+                                                                <tr class='text-center'>
+                                                                  <td>{{content.data_id}}</td>
+                                                                  <td>{{content.staff.name}}</td>
+                                                                  <td>{{content.staff.empId}}</td>
+                                                                  <td><img src="/media/{{content.staff.profile}}" style="width: 50px;height:50px;border-radius: 50%;"></td>
+                                                                 
+                                                                  <td>{{content.staff.empDepartment}}</td>
+                                                                  <td>{{content.data_file}}</td>
+                                                                  <td style="width:500px">{{content.published_date}}</td>
+                                                               
+                                                                  <td >
+                                                                    <a href="{% url 'delete_content' content.data_id %}"><button class="btn btn-danger" type="button" onclick="return confirm ('Are you sure want to delete it')">Delete</button></a>
+                                                                    
+                                                                  </td>
+                                                              </tr>
+                                                              
+                                                              {% endfor %}
+                                                             
+                                                            </tbody>
+                                                          </table>
+
+                                                          <nav aria-label="Page navigation example">
+                                                            <ul class="pagination ml-2">
+                                                                {% if all_content.has_previous %}
+                                                                    <!-- <li class="page-item"><a class="page-link" href="?page=1">&laquo; First</a></li> -->
+                                                                    <li class="page-item"><a class="page-link bg-info text-white" href="?page={{ all_content.previous_page_number }}">Previous</a></li>
+                                                                {% endif %}
+                                                                {% if all_content.has_next %}
+                                                                <li class="page-item"><a class="page-link bg-info text-white" href="?page={{ all_content.next_page_number }}">Next</a></li>
+                                                                <!-- <li class="page-item"><a class="page-link" href="?page={{ r.paginator.num_pages }}">Last &raquo;</a></li> -->
+                                                                {% endif %}
+                                                            </ul>
+                                                            Page {{ all_content.number }} of {{ all_content.paginator.num_pages }}.
+                                                          </nav>
+
+                                                    
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                </div>
+
+                {% if messages %}              
+                  {% for message in messages %}
+                     {% if message.level == DEFAULT_MESSAGE_LEVELS.WARNING %}
+                               <script>swal({
+                                 title: "Warning!",
+                                 text: "{{message}}",
+                                 icon: "warning",
+                                 button: "OK",
+                               });
+                             </script>
+                          
+                           {% elif message.level == DEFAULT_MESSAGE_LEVELS.INFO %}
+                               <script>swal({
+                                 title: "Info :)",
+                                 text: "{{message}}",
+                                 icon: "info",
+                                 button: "OK",
+                               });
+                     </script>
+                     {% elif message.level == DEFAULT_MESSAGE_LEVELS.ERROR %}
+                     <script>swal({
+                       title: "Error :)",
+                       text: "{{message}}",
+                       icon: "eroor",
+                       button: "OK",
+                     });
+                     </script>
+                     {% elif message.level == DEFAULT_MESSAGE_LEVELS.SUCCESS %}
+                     <script>swal({
+                     title: "Success :)",
+                     text: "{{message}}",
+                     icon: "success",
+                     button: "OK",
+                     });
+                     </script>
+                           {% endif %}              
+                         {% endfor %} 
+                     {% endif %}               
+                                                          
+
+                     <footer class="footer">
+                        <div><a class="border-bottom" href="https://codebook.in">Codebook</a> © 2022 All Right Reserved</div>
+                        <div class="ms-auto">  Designed & Developed By Codebook<a class="border-bottom" href="https://Codebook.com"></a></div>
+                      </footer>
+</div>
+</div>
+
+
+
+                <!-- CoreUI and necessary plugins-->
+<script src="{% static 'admin/vendors/@coreui/coreui/js/coreui.bundle.min.js' %}"></script>
+<script src="{% static 'admin/vendors/simplebar/js/simplebar.min.js' %}"></script>
+<!-- Plugins and scripts required by this view-->
+<script src="{% static 'admin/vendors/chart.js/js/chart.min.js' %}"></script>
+<script src="{% static 'admin/vendors/@coreui/chartjs/js/coreui-chartjs.js' %}"></script>
+<script src="{% static 'admin/vendors/@coreui/utils/js/coreui-utils.js' %}"></script>
+<script src="{% static 'admin/js/main.js' %}"></script>
+<script>
+</script>
+
+</body>
+
+</html>

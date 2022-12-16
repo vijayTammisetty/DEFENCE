@@ -1,0 +1,61 @@
+<script>
+    function validation(){
+        dep = document.myform.dep;
+        title = document.myform.title;
+        desc = document.myform.desce;
+
+        if (dep.value.length <=0){
+            alert('Enetr department Name')
+            dep.focus()
+            return false
+        }
+
+        if (title.value.length <=0){
+            alert('Enter title')
+            title.focus()
+            return false
+        }
+
+        if (desc.value.length <=0){
+            alert('Enter description about the file')
+            desc.focus()
+            return false
+        }
+
+    }
+</script>
+
+
+<div class="container" >
+    <div class="row justify-content-center align-items-center ">
+        <div class="col-sm-6">
+            <div class="card " >
+                <div class="card-head text-center">
+                    <img src="/media/{{receiver.profile}}" alt="" width="400px" height="400px" style="background-image:cover;" >
+                </div>
+                <div class="card-body" width="400px" height="300px">
+                    <form class="px-md-2" method='post' name='myform' enctype='multipart/form-data' onsubmit='return validation()'>
+                        {% csrf_token %}
+                      <div class="form-outline mb-4">
+                        <label class="form-label" for="form3Example1q">Department</label>
+                        <input type="text" id="form3Example1q" name='dep' class="form-control"  />
+                       
+                      </div>
+                       <div class="form-outline mb-4">
+                          <label class="form-label" for="form3Example1q">title</label>
+                          <input type="text" id="form3Example1q" name='title' class="form-control" />
+                         
+                        </div> 
+                        <div class="form-outline mb-4">
+                            <label class="form-label" for="form3Example1q">Description</label>
+                            <textarea type="text" id="form3Example1q" name='desce' class="form-control" ></textarea>
+                           
+                          </div> 
+            
+                        <a href= "{% url 'approved-record' %}"><button type="submit" class="btn btn-success btn-lg mb-3">Send Request</button></a>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

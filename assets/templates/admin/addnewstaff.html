@@ -1,0 +1,621 @@
+<!DOCTYPE html>
+{% load static %}
+<!--
+* CoreUI - Free Bootstrap Admin Template
+* @version v4.2.1
+* @link https://coreui.io
+* Copyright (c) 2022 creativeLabs Łukasz Holeczek
+* Licensed under MIT (https://coreui.io/license)
+-->
+<!-- Breadcrumb-->
+<html lang="en">
+
+<head>
+    <base href="./">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <meta name="description" content="CoreUI - Open Source Bootstrap Admin Template">
+    <meta name="author" content="Łukasz Holeczek">
+    <meta name="keyword" content="Bootstrap,Admin,Template,Open,Source,jQuery,CSS,HTML,RWD,Dashboard">
+    <title>Add New Staff</title>
+    <link rel="apple-touch-icon" sizes="57x57" href="{% static 'admin/assets/favicon/apple-icon-57x57.png' %}">
+    <link rel="apple-touch-icon" sizes="60x60" href="{% static 'admin/assets/favicon/apple-icon-60x60.png' %}">
+    <link rel="apple-touch-icon" sizes="72x72" href="{% static 'admin/assets/favicon/apple-icon-72x72.png' %}">
+    <link rel="apple-touch-icon" sizes="76x76" href="{% static 'admin/assets/favicon/apple-icon-76x76.png' %}">
+    <link rel="apple-touch-icon" sizes="114x114" href="{% static 'admin/assets/favicon/apple-icon-114x114.png' %}">
+    <link rel="apple-touch-icon" sizes="120x120" href="{% static 'admin/assets/favicon/apple-icon-120x120.png' %}">
+    <link rel="apple-touch-icon" sizes="144x144" href="{% static 'admin/assets/favicon/apple-icon-144x144.png' %}">
+    <link rel="apple-touch-icon" sizes="152x152" href="{% static 'admin/assets/favicon/apple-icon-152x152.png' %}">
+    <link rel="apple-touch-icon" sizes="180x180" href="{% static 'admin/assets/favicon/apple-icon-180x180.png' %}">
+    <link rel="icon" type="image/png" sizes="192x192" href="{% static 'admin/assets/favicon/android-icon-192x192.png' %}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{% static 'admin/assets/favicon/favicon-32x32.png' %}">
+    <link rel="icon" type="image/png" sizes="96x96" href="{% static 'admin/assets/favicon/favicon-96x96.png' %}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{% static 'admin/assets/favicon/favicon-16x16.png' %}">
+    <link rel="manifest" href="{% static 'admin/assets/favicon/manifest.json' %}">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="{% static 'admin/assets/favicon/ms-icon-144x144.png' %}">
+    <meta name="theme-color" content="#ffffff">
+    <!-- Vendors styles-->
+    <link rel="stylesheet" href="{% static 'admin/vendors/simplebar/css/simplebar.css' %}">
+    <link rel="stylesheet" href="{% static 'admin/css/vendors/simplebar.css' %}">
+    <!-- Main styles for this application-->
+    <link href="{% static 'admin/css/style.css' %}" rel="stylesheet">
+    <!-- We use those styles to show code examples, you should remove them in your application.-->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs@1.23.0/themes/prism.css">
+    <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css'>
+    <link href="{% static 'admin/css/examples.css' %}" rel="stylesheet">
+    <link href="{% static 'admin/vendors/@coreui/chartjs/css/coreui-chartjs.css' %}" rel="stylesheet">
+    <!-- Global site tag (gtag.js) - Google Analytics-->
+    <script async="" src="https://www.googletagmanager.com/gtag/js?id=UA-118965717-3"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+        gtag('js', new Date());
+        // Shared ID
+        gtag('config', 'UA-118965717-3');
+        // Bootstrap ID
+        gtag('config', 'UA-118965717-5');
+    </script>
+
+    <script>
+        function validation(){
+            var empName = document.getElementById('empname').value;
+            var empId = document.myform.empid.value;
+            var empDepartment = document.myform.department.value;
+            var empEmail = document.myform.email.value;
+            var joinDate = document.myform.joindate.value;
+            var empDOB = document.myform.dob.value;
+            var empPassword = document.myform.password.value;
+            var officialEmail = document.myform.email2.value;
+            var state = document.myform.state.value;
+            var country  = document.myform.country.vlaue;
+            var address = document.myform.address.value;
+            var pincode = document.myform.pin.vlaue;
+            var empProfile = document.myform.profile.value;
+
+           
+            var emailpattern = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([com\co\.\in])+$/; 
+            var letter = /[a-z]/;
+            var upper = /[A-Z]/;
+            var number = /[0-9]/; 
+            //var extensions = /(\.jpg|\.jpeg|\.png|\.gif)/;
+            // var symbols =/(!\@\#\$\%\^\&\*)/
+
+            if (empName == ''){
+                alert('Enter Employee name')
+                empName.focus()
+                return false
+            }
+
+            if (empId == null || empId == ''){
+                alert('Enter valid Emp Id')
+                empId.focus()
+                return false
+            }
+
+        
+           if (empDepartment == ""){
+                alert('department not should be empty enter Employee department')
+                empDepartment.focus()
+                return false
+            }
+            
+
+            if (empEmail.length <= 0){
+                alert('Enter valid email')
+                empEmail.focus()
+                return false
+            }
+
+           if (!empEmail.match(emailpattern)){
+                alert('Enetr valid email Id')
+                empEmail.focus()
+                return false
+            }
+            
+            
+            if (joinDate == ''){
+                alert('Enter joining date ')
+                joinDate.focus()
+                return false
+            } 
+           
+            if (empDOB == ''){
+                alert('Enter your data of birth')
+                empDOB.focus()
+                return false
+            }
+            
+            if (empPassword.length == ''){
+                alert('Enter user password')
+                empPassword.focus()
+                return false
+            }
+              
+            if (empPassword.length < 8){
+                alert('password must be 8 charecters')
+                empPassword.focus()
+                return false
+            }
+
+            
+            if (!empPassword.match(letter)){
+                alert('password should contain at least one lower case letter')
+                empPassword.focus()
+                return false
+            }
+            if (!empPassword.match(upper)){
+                alert('password should contain at least one upper case letter')
+                empPassword.focus()
+                return false
+            }
+            
+            if (!empPassword.match(number)){
+                alert('password must be strong with numbers and charecters')
+                empPassword.focus()
+                return false
+            }
+
+            if (officialEmail == ''){
+                alert('Enter valid official email')
+                officialEmail.focus()
+                return false
+            }
+            
+            if (!officialEmail.match(emailpattern)){
+                alert('Enter valid official email')
+                officialEmail.focus()
+                return false
+            }
+            
+            if (state == ''){
+                alert('Enter your state ')
+                state.focus()
+                return false
+            }
+            if (country == ''){
+                alert('Enter your country')
+                country.focus()
+                return false
+            }
+
+            if (address == ''){
+                alert('Enter your address')
+                address.focus()
+                return false
+            }
+
+            if (pincode == ''){
+                alert('Enter your area pin code')
+                pincode.focus()
+                return false
+            }
+
+            if  (pincode.length < 8){
+                alert('Invalid pin number')
+                pincode.focus()
+                return false
+            }
+
+
+            if (empProfile == ''){
+                alert('Upload  your profile')
+                empProfile.focus()
+                return false
+            }
+          
+            
+        }
+
+    </script>
+    
+</head>
+
+<body>
+    <div class="sidebar sidebar-dark sidebar-fixed" id="sidebar">
+        <div class="sidebar-brand d-none d-md-flex">
+            <svg class="sidebar-brand-full" width="118" height="46" alt="CoreUI Logo">
+                <use xlink:href="{% static 'admin/assets/brand/coreui.svg#full' %}"></use>
+            </svg>
+            <svg class="sidebar-brand-narrow" width="46" height="46" alt="CoreUI Logo">
+                <use xlink:href="{% static 'admin/assets/brand/coreui.svg#signet' %}"></use>
+            </svg>
+        </div>
+        <ul class="sidebar-nav" data-coreui="navigation" data-simplebar="">
+            <li class="nav-item"><a class="nav-link" href="{% url 'dashboard' %}">
+                    <svg class="nav-icon">
+                        <use xlink:href="{% static 'admin/vendors/@coreui/icons/svg/free.svg#cil-speedometer' %}"></use>
+                    </svg> Dashboard<span class="badge badge-sm bg-info ms-auto"></span></a></li>
+
+
+
+            <li class="nav-group"><a class="nav-link nav-group-toggle" href="#">
+                    <svg class="nav-icon">
+                        <use xlink:href="{% static 'admin/vendors/@coreui/icons/svg/free.svg#cil-puzzle' %}"></use>
+                    </svg>User Management</a>
+                <ul class="nav-group-items">
+                    <li class="nav-item active"><a class="nav-link" href="{% url 'new-staff' %}"><span
+                                class="nav-icon"></span>Add New Staff</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'manage-staff' %}"><span
+                                class="nav-icon"></span>Manage Staff</a></li>
+                            </ul>
+            </li>
+            <li class="nav-group"><a class="nav-link nav-group-toggle" href="#">
+                    <svg class="nav-icon">
+                        <use xlink:href="{% static 'admin/vendors/@coreui/icons/svg/free.svg#cil-cursor' %}"></use>
+                    </svg>Content Management</a>
+                <ul class="nav-group-items">
+                    <li class="nav-item"><a class="nav-link" href="{% url 'published' %}"><span
+                                class="nav-icon"></span>Published Content</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'allcontent' %}"><span
+                                class="nav-icon"></span>All Content</a></li>
+
+                </ul>
+            </li>
+        </ul>
+        <button class="sidebar-toggler" type="button" data-coreui-toggle="unfoldable"></button>
+    </div>
+    <div class="wrapper d-flex flex-column min-vh-100 bg-light">
+        <header class="header header-sticky mb-4">
+            <div class="container-fluid">
+                <button class="header-toggler px-md-0 me-md-3" type="button"
+                    onclick="coreui.Sidebar.getInstance(document.querySelector('#sidebar')).toggle()">
+                    <svg class="icon icon-lg">
+                        <use xlink:href="{% static 'admin/vendors/@coreui/icons/svg/free.svg#cil-menu' %}"></use>
+                    </svg>
+                </button><a class="header-brand d-md-none" href="#">
+                    <svg width="118" height="46" alt="CoreUI Logo">
+                        <use xlink:href="Vassets/brand/coreui.svg#full' %}"></use>
+                    </svg></a>
+                <ul class="header-nav d-none d-md-flex">
+                    <li class="nav-item"><a class="nav-link" href="#">Add Staff</a></li>
+                  
+                </ul>
+                 <ul class="header-nav ms-auto">
+                    
+                </ul>
+            </ul>
+            <ul class="header-nav ms-3">
+              <li class="nav-item dropdown"><a class="nav-link py-0" data-coreui-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+                  <div class="avatar avatar-md"><img class="avatar-img" src="{% static 'admin/assets/img/avatars/8.jpg' %}" alt="user@email.com"></div>
+                </a>
+                <div class="dropdown-menu dropdown-menu-end pt-0">
+                  
+                   
+                    <svg class="icon me-2">
+                      
+                    </svg> <a href="{% url 'admin_logout' %}">Logout</a> </a>
+                </div>
+             
+
+                </li>
+                </ul>
+                
+            </div>
+            <div class="header-divider"></div>
+            <div class="container-fluid">
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb my-0 ms-2">
+                        <li class="breadcrumb-item">
+                            <!-- if breadcrumb is single--><span>Dashboard</span>
+                        </li>
+                        <li class="breadcrumb-item active"><span>Add New Staff</span></li>
+                    </ol>
+                </nav>
+            </div>
+        </header>
+        <div class="body flex-grow-1 px-3">
+            <div class="container-fluid">
+                <div class="row">
+                    <section class="vh-100" style="background-color: #eee ;">
+                        <div class="container h-100">
+                            <div class="row d-flex justify-content-center align-items-center h-100">
+                                <div class="col-lg-12 col-xl-11">
+                                    <div class="card text-black" style="border-radius: 50px;">
+                                        <div class="card-body p-md-5">
+                                            <div class="row justify-content-start">
+                                                <div class="col-sm-8 col-lg-6 order-2 order-lg-1">
+
+                                                    <p class="text-center h1 fw-bold mb-5 mx-1 mx-md-4 mt-4">Add Staff
+                                                        Details</p>
+
+                                                        <form method = 'post' action= "{%url 'new-staff' %}" name = 'myform' enctype="multipart/form-data" onsubmit='return validation()'>
+                                                            {% csrf_token %}
+                                                            <div class="row">
+                                                                <div class="col-sm-6 mb-4">
+                                                                    <label class="form-label" for="form3Example1cg">Emp Name</label>
+                                                                <input type="text" id="empname" name= 'empname' class="form-control " />
+                                                                
+                                                                </div>
+                                                                <div class="col-sm-6 mb-4">
+                                                                    <label class="form-label" for="form3Example1cg">Emp Id</label>
+                                                                    <input type="text" id="empid" name='empid' class="form-control " />
+                                                                    
+                                                                </div>
+                                                            </div>
+                                
+                                                            <div class="row">
+                                                                <div class="col-sm-6 mb-4">
+                                                                    <label class="form-label" for="form3Example1cg">Department</label>
+                                                                    {% comment %} <input type="text" id="form3Example1cg" name='empdep' class="form-control " /> {% endcomment %}
+                                                                    <select name="department" id='empdepartment' class="form-control"id="">
+                                                                        <option value="" >select</option>
+                                                                        <option>DOD</option>
+                                                                        <option>DRDO</option>
+                                                                        <option>DMA</option>
+                                                                        <option>DDP</option>
+                                                                        <option>DESW</option>
+
+                                                                    </select>
+                                                                </div>
+                                                                
+                                                                <div class="col-sm-6 ">
+                                                                    <label for="">Join Date</label>
+                                                                    <input type="date" name='join' id='joindate' class='form-control'/>
+                                                                </div>
+                                                
+                                                                
+                                                            </div>
+                                                            <div class="row">
+                                                                <div class="col-sm-6 mb-4">
+
+                                                                    <label class="form-label" for="form3Example3cg">Your Email</label>
+                                                                    <input type="email" id="email" name='email' class="form-control " />
+                                                                
+                                                                </div>
+
+                                                                <div class="col-sm-6 mb-4">
+
+                                                                    <label class="form-label" for="form3Example4cdg">official Email</label>
+                                                                    <input type="email" id="newemail" name='email2' class="form-control " />
+                                                            
+                                                                </div>
+                                                                
+                                                               
+                                                                {% comment %} <div class="col-sm-6">
+                                                                    <label for="">DOB</label>
+                                                                    <input type="date" name='dob' id='dob'  class='form-control '/>
+                                                                </div> {% endcomment %}
+                                            
+                                                            </div>
+                                
+                                                            <div class="row">
+                                                                {% comment %} <div class="col-sm-6 mb-4">
+                                                                    <label class="form-label" for="form3Example4cg">Password</label>
+                                                                <input type="password" id="password" name= 'password' class="form-control " />
+                                                                
+                                                                </div> {% endcomment %}
+                                                
+                                                                
+                                                            </div>
+                                                            <div class="row">
+                                                
+                                                                <div class="col-sm-6 mb-4">
+                                                                    <label class="form-label" for="form3Example4cdg">State</label>
+                                                                    <input type="text" name='state' id='state' class='form-control '/>
+                                                                </div>
+                                                                <div class="col-sm-6 mb-4">
+                                                                    <label for="">Country</label>
+                                                                    <input type="text" name='country' id='country' class='form-control '/>
+                                                                </div>
+                                            
+                                                            </div>
+                                                            <div class="row">
+                                                                
+                                                                <div class="col-sm-6 mb-4">
+                                                                    <label for="">Address</label>
+                                                                    <input type="text" name='address' id='address' class='form-control '/>
+                                                                </div>
+                                                                <div class="col-sm-6 mb-4">
+                                                                    <label for="">Pin Code</label>
+                                                                    <input type="text" name='pin' id='pin' class='form-control '/>
+                                                                </div>
+                                            
+                                                            </div>
+                                
+                                                            <div class="row">
+                                                                <div class="col-sm-12 mb-4">
+                                                                    <label for="">Profile</label>
+                                                                    <input type="file" name='profile' id='profile' accept='image/*'  class='form-control '/>
+                                                                        
+                                                                </div>
+                                                          
+                                                            </div>
+                                                         
+                                            
+                                                            <div class="col-sm-12 ">
+                                                              <button type="submit"
+                                                                class="btn btn-success btn-block btn-lg w-100 gradient-custom-4 text-body">Add Satff</button>
+                                                            </div>
+                                            
+                                                           
+                                                          </form>
+                                            
+
+                                                          {% if messages %}              
+                                                          {% for message in messages %}
+                                                          {% if message.level == DEFAULT_MESSAGE_LEVELS.WARNING %}
+                                                                    <script>swal({
+                                                                      title: "Warning!",
+                                                                      text: "{{message}}",
+                                                                      icon: "warning",
+                                                                      button: "OK",
+                                                                    });
+                                                                  </script>
+                                                                 
+                                                                {% elif message.level == DEFAULT_MESSAGE_LEVELS.INFO %}
+                                                                    <script>swal({
+                                                                      title: "Info :)",
+                                                                      text: "{{message}}",
+                                                                      icon: "info",
+                                                                      button: "OK",
+                                                                    });
+                                                          </script>
+                                                          {% elif message.level == DEFAULT_MESSAGE_LEVELS.ERROR %}
+                                                          <script>swal({
+                                                            title: "Error :)",
+                                                            text: "{{message}}",
+                                                            icon: "eroor",
+                                                            button: "OK",
+                                                          });
+                                                          </script>
+                                                          {% elif message.level == DEFAULT_MESSAGE_LEVELS.SUCCESS %}
+                                                          <script>swal({
+                                                          title: "Success :)",
+                                                          text: "{{message}}",
+                                                          icon: "success",
+                                                          button: "OK",
+                                                          });
+                                                          </script>
+                                                                {% endif %}              
+                                                              {% endfor %} 
+                                                             {% endif %}
+                                                          
+                                                          
+
+
+
+                                                    {% comment %} <form class="mx-1 mx-md-4">
+
+                                                        <div class="d-flex flex-row align-items-center mb-4">
+                                                            <i class="fas fa-user fa-lg me-3 fa-fw"></i>
+                                                            <div class="form-outline flex-fill mb-0">
+                                                                <label class="form-label" for="form3Example1c">Emp
+                                                                    Name</label>
+                                                                <input type="text" id="form3Example1c"
+                                                                    class="form-control" />
+
+                                                            </div>
+                                                        </div>
+                                                        <div class="d-flex flex-row align-items-center mb-4">
+                                                            <i class="fas fa-user fa-lg me-3 fa-fw"></i>
+                                                            <div class="form-outline flex-fill mb-0">
+                                                                <label class="form-label" for="form3Example1c">Emp
+                                                                    Id</label>
+                                                                <input type="text" id="form3Example1c"
+                                                                    class="form-control" />
+
+                                                            </div>
+                                                        </div>
+                                                        <div class="d-flex flex-row align-items-center mb-4">
+                                                            <i class="fas fa-user fa-lg me-3 fa-fw"></i>
+                                                            <div class="form-outline flex-fill mb-0">
+                                                                <label class="form-label" for="form3Example1c">Department
+                                                                    </label>
+                                                                    <select name="department" class="form-control"id="">
+                                                                        <option hidden>DOD</option>
+                                                                        <option>DRDO</option>
+                                                                        <option>DMA</option>
+                                                                        <option>DDP</option>
+                                                                        <option>DESW</option>
+
+                                                                    </select>
+                                                                
+                                                                
+                                                               
+
+                                                            </div>
+                                                        </div>
+                                                      
+                                                      
+                                                        
+
+                                                        <div class="d-flex flex-row align-items-center mb-4">
+                                                            <i class="fas fa-envelope fa-lg me-3 fa-fw"></i>
+                                                            <div class="form-outline flex-fill mb-0">
+                                                                <label class="form-label"
+                                                                    for="form3Example3c">DOB</label>
+                                                                <input type="date" id="form3Example3c"
+                                                                    class="form-control" />
+
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="d-flex flex-row align-items-center mb-4">
+                                                            <i class="fas fa-lock fa-lg me-3 fa-fw"></i>
+                                                            <div class="form-outline flex-fill mb-0">
+                                                                <label class="form-label"
+                                                                    for="form3Example3c">Email</label>
+                                                                <input type="password" id="form3Example4c"
+                                                                    class="form-control" />
+
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="d-flex flex-row align-items-center mb-4">
+                                                            <i class="fas fa-key fa-lg me-3 fa-fw"></i>
+                                                            <div class="form-outline flex-fill mb-0">
+                                                                <label class="form-label"
+                                                                    for="form3Example4cd">Adress</label>
+                                                                <input type="password" id="form3Example4cd"
+                                                                    class="form-control" />
+
+                                                            </div>
+                                                        </div>
+                                                        <div class="d-flex flex-row align-items-center mb-4">
+                                                            <i class="fas fa-key fa-lg me-3 fa-fw"></i>
+                                                            <div class="form-outline flex-fill mb-0">
+                                                                <label class="form-label" for="form3Example4cd">Phone
+                                                                    Number</label>
+                                                                <input type="password" id="form3Example4cd"
+                                                                    class="form-control" />
+
+                                                            </div>
+                                                        </div>
+
+
+                                 
+
+                                                        <div class="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
+                                                            <button type="button" class="btn btn-primary btn-lg">Add
+                                                                Details</button>
+                                                        </div>
+
+                                                    </form> {% endcomment %}
+
+                                                </div>
+                                                <div
+                                                    class="col-sm-4 col-lg-6 d-flex align-items-center justify-content-end order-1 order-lg-2">
+
+                                                    <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-registration/draw1.webp"
+                                                        class="img-fluid" alt="Sample image" style="height:400px;width:600px">
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                </div>
+         
+
+</div>
+</div>
+{% comment %} <footer class="footer">
+    <div><a class="border-bottom" href="https://codebook.in">Codebook</a> © 2022 All Right Reserved</div>
+    <div class="ms-auto">  Designed & Developed By Codebook<a class="border-bottom" href="https://Codebook.com"></a></div>
+  </footer> {% endcomment %}
+
+
+                <!-- CoreUI and necessary plugins-->
+<script src="{% static 'admin/vendors/@coreui/coreui/js/coreui.bundle.min.js' %}"></script>
+<script src="{% static 'admin/vendors/simplebar/js/simplebar.min.js' %}"></script>
+               <!-- Plugins and scripts required by this view-->
+<script src="{% static 'admin/vendors/chart.js/js/chart.min.js' %}"></script>
+<script src="{% static 'admin/vendors/@coreui/chartjs/js/coreui-chartjs.js' %}"></script>
+<script src="{% static 'admin/vendors/@coreui/utils/js/coreui-utils.js' %}"></script>
+<script src="{% static 'admin/js/main.js' %}"></script>
+<script>
+</script>
+
+</body>
+
+</html>
